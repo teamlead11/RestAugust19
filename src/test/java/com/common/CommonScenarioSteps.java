@@ -25,19 +25,5 @@ public class CommonScenarioSteps extends Helper {
 		System.out.println(response.getStatusCode());
 	}
 
-	@Then("^I validate the error response message\\.$")
-	public void i_validate_the_error_response_message(Map<String, String> responseFields) throws Exception {
-		commonCode.validateResponsMessage(responseFields);
-	}
-
-	@Then("^I validate the response message\\.$")
-	public void i_validate_the_response_message(Map<String, String> responseFields) throws Exception {
-		commonCode.validateResponsMessage(responseFields);
-	}
-
-	@Then("^I verify the response fields$")
-	public void I_verify_the_response_fields(List<String> responseFields) throws Exception {
-		commonCode.verifyResponseFields(responseFields);
-	}
 
 }

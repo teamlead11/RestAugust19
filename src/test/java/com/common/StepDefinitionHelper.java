@@ -93,46 +93,5 @@ public class StepDefinitionHelper extends Helper {
 		return response;
 	}
 
-	public ValidatableResponse validateResponseCode(Integer responseCode) throws Exception {
-		validatableResponseJson = response.then().statusCode(responseCode);
-
-		return validatableResponseJson;
-	}
-
-	public void validateResponsMessage(Map<String, String> responseFields) throws Exception {
-		validatableResponseJson.toString();
-		if (validatableResponseJson != null) {
-			if (!response.getBody().asString().isEmpty()) {
-				for (Map.Entry<String, String> field : responseFields.entrySet()) {
-					if (StringUtils.isNumeric(field.getValue())) {
-						validatableResponseJson.body(field.getKey(), equalTo(Integer.parseInt(field.getValue())));
-					} else {
-						if (field.getValue().equals("false")) {
-							validatableResponseJson.body(field.getKey(), equalTo(false));
-						} else {
-							if ("null".equals(field.getValue())) {
-								validatableResponseJson.body(field.getKey(), equalTo(null));
-							} else if ("true".equals(field.getValue())) {
-								validatableResponseJson.body(field.getKey(), equalTo(true));
-							} else {
-								validatableResponseJson.body(field.getKey(), equalTo(field.getValue()));
-							}
-						}
-
-					}
-				}
-			}
-		}
-	}
-
-	public void verifyResponseFields(List<String> responseFields) {
-		if (validatableResponseJson != null) {
-			if (!response.getBody().asString().isEmpty()) {
-				Iterator<String> i = responseFields.iterator();
-				while (i.hasNext()) {
-					validatableResponseJson.body(i.next(), is(not(nullValue())));
-				}
-			}
-		}
-	}
+		
 }
